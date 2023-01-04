@@ -41,7 +41,7 @@ def parse_config():
                         if curr_map not in target_map:
                             target_map.append(curr_map)
             else:
-                print(source + " does not exist.")
+                print(source.stem + " does not exist.")
     return (target_map)
 
 
@@ -52,9 +52,19 @@ def link(target_map):
 
         if destination.exists():
             if destination.is_symlink():
+                print("Skipped " + destination.stem)
                 continue
             print(destination /
                   " already exists, try deleting or moving it and try agian!")
         else:
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.symlink_to(source)
+            print("linked " + destination.stem)
+
+
+def main():
+    link(parse_config())
+
+
+if __name__ == "__main__":
+    main()
