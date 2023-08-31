@@ -3,7 +3,7 @@ import os
 
 config = None
 
-filename = os.getenv('env', 'config.yaml').lower()
+filename = os.getenv('env', './saviour/manifest/data.yml').lower()
 script_dir = os.path.dirname(__file__)
 abs_file_path = os.path.join(script_dir, filename)
 with open(abs_file_path, 'r') as stream:
